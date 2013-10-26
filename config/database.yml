@@ -1,0 +1,12 @@
+development:
+  host: localhost
+  port: 3306
+  username: root
+  password:
+  dbname: happy_reminder
+production:
+  host: localhost
+  port: 3306
+  username: root
+  password:
+  dbname: happy_reminder
