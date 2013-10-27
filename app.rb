@@ -1,5 +1,4 @@
 require 'sinatra/base'
-require 'sinatra/contrib'
 require 'mysql2-cs-bind'
 require 'koala'
 require 'erubis'
@@ -13,10 +12,6 @@ class HappyReminder < Sinatra::Base
 
   configure :development do
     register Sinatra::Contrib
-  end
-
-  configure do
-    puts ENV["RACK_ENV"]
   end
 
   helpers do
