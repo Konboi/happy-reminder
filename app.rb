@@ -17,7 +17,7 @@ class HappyReminder < Sinatra::Base
 
     def connection
       config = YAML.load(File.read('config/database.yml'))
-      p config
+      puts config
       return $mysql if $mysql
       $mysql = Mysql2::Client.new(
         :host => config['host'],
