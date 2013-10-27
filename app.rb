@@ -76,6 +76,8 @@ class HappyReminder < Sinatra::Base
           Time.now,
         )
 
+        graph.update('complete')
+
         redirect 'complete'
       rescue => e
         puts e
