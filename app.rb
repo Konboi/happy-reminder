@@ -16,7 +16,7 @@ class HappyReminder < Sinatra::Base
     set :erb, :escape_html => true
 
     def connection
-      config = YAML.load_file(File.open(File.join("config","database.yml")))
+      config = YAML.load(File.read('config/database.yml'))
       p config
       return $mysql if $mysql
       $mysql = Mysql2::Client.new(
