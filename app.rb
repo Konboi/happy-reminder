@@ -16,15 +16,12 @@ class HappyReminder < Sinatra::Base
     set :erb, :escape_html => true
 
     def connection
-      config = YAML.load(File.read('config/database.yml'))
-      puts config
       return $mysql if $mysql
       $mysql = Mysql2::Client.new(
-        :host => config['host'],
-        :port => config['port'],
-        :username => config['username'],
-        :password => config['password'],
-        :database => config['dbname'],
+        :host => 'us-cdbr-east-04.cleardb.com',
+        :username => 'b3f847fa686bea',
+        :password => 'd713d92b',
+        :database => 'heroku_26f1a3cb427f369',
         :reconnect => true,
       )
     end
