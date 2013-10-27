@@ -76,8 +76,7 @@ class HappyReminder < Sinatra::Base
           Time.now,
         )
 
-        graph.update('complete')
-
+        graph.put_connections("me", "feed", :message => "heroku")
         redirect 'complete'
       rescue => e
         puts e
