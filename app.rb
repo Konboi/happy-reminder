@@ -4,15 +4,13 @@ require 'koala'
 require 'erubis'
 require 'yaml'
 
+YAML::ENGINE.yamler = 'syck'
+
 class HappyReminder < Sinatra::Base
   set :port, 8888
   set :environments, %w{development production}
   set :session, true
   set :logging, true
-
-  configure :development do
-    register Sinatra::Contrib
-  end
 
   helpers do
     set :erb, :escape_html => true
