@@ -66,7 +66,9 @@ class HappyReminder < Sinatra::Base
         birthday = Time.local(user_birthday[2], user_birthday[0], user_birthday[1])
 
         user = mysql.xquery("SELECT * FROM users WHERE facebook_id=?", graph["id"]).first
-        redirect '/' and return if user
+        graph.put_connections("me", "feed", :message => "heroku")
+
+        redirect '/complete' and return if user
 
         mysql.xquery(
           'INSERT INTO users (facebook_id, birth_day, access_token, created_at) VALUES (?, ?, ?, ?)',
@@ -76,7 +78,7 @@ class HappyReminder < Sinatra::Base
           Time.now,
         )
 
-        graph.put_connections("me", "feed", :message => "heroku")
+
         redirect 'complete'
       rescue => e
         puts e
