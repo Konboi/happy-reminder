@@ -33,13 +33,9 @@ class HappyReminder < Sinatra::Base
         :reconnect => true,
       )
 =end
+
       $mysql = Mysql2::Client.new(
-        :host      => 'us-cdbr-east-05.cleardb.net',
-        :port      => 3306,
-        :username  => 'a6fe19cd211b',
-        :password  => 'c2e1c2f0',
-        :database  => 'heroku_00e2bbcdfaea45e',
-        :reconnect => true,
+          ENV['DATABASE_URL']
       )
 
     end
