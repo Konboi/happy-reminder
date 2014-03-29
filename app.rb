@@ -22,6 +22,7 @@ class HappyReminder < Sinatra::Base
       puts env
       puts  File.dirname(__FILE__)
 
+=begin
       config = YAML.load_file(File.dirname(__FILE__) + "/config/database.yml")[env]
       $mysql = Mysql2::Client.new(
         :host      => config["host"],
@@ -31,6 +32,16 @@ class HappyReminder < Sinatra::Base
         :database  => config["dbname"],
         :reconnect => true,
       )
+=end
+      $mysql = Mysql2::Client.new(
+        :host      => 'us-cdbr-east-05.cleardb.net',
+        :port      => 3306,
+        :username  => 'a6fe19cd211b',
+        :password  => 'c2e1c2f0',
+        :database  => 'heroku_00e2bbcdfaea45e',
+        :reconnect => true,
+      )
+
     end
 
     def facebook_app
