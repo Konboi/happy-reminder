@@ -22,7 +22,6 @@ class HappyReminder < Sinatra::Base
       puts env
       puts  File.dirname(__FILE__)
 
-=begin
       config = YAML.load_file(File.dirname(__FILE__) + "/config/database.yml")[env]
       $mysql = Mysql2::Client.new(
         :host      => config["host"],
@@ -31,11 +30,6 @@ class HappyReminder < Sinatra::Base
         :password  => config["password"],
         :database  => config["dbname"],
         :reconnect => true,
-      )
-=end
-
-      $mysql = Mysql2::Client.new(
-          ENV['DATABASE_URL']
       )
 
     end
