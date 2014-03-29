@@ -6,7 +6,7 @@ development:
   dbname: happy_reminder
 
 production:
-  host: 'us-cdbr-east-04.cleardb.com'
+  host: 'mysql2://b3f847fa686bea:d713d92b@us-cdbr-east-04.cleardb.com/heroku_26f1a3cb427f369?reconnect=true'
   port: 3306
   username: b3f847fa686bea
   password: d713d92b
