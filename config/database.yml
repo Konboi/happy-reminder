@@ -1,3 +1,10 @@
+production:
+  host: us-cdbr-east-04.cleardb.com
+  port: 3306
+  username: b3f847fa686bea
+  password: d713d92b
+  dbname: heroku_26f1a3cb427f369
+
 development:
   host: localhost
   port: 3306
@@ -5,9 +12,3 @@ development:
   password:
   dbname: happy_reminder
 
-production:
-  host: us-cdbr-east-04.cleardb.com
-  port: 3306
-  username: b3f847fa686bea
-  password: d713d92b
-  dbname: heroku_26f1a3cb427f369
