@@ -8,4 +8,4 @@ production:
   facebook:
     app_id: "417061785062564"
     app_secret: "797d3b9407100cb55a3b66d85b395eb1"
-    callback: "http://happy-reminder.herokuapp.com/facebook/callback"
+    callback: "http://birth-reminder.herokuapp.com/facebook/callback"
