@@ -11,23 +11,27 @@ class HappyReminder < Sinatra::Base
   set :environments, %w{development production}
   set :session, true
   set :logging, true
+  set :bind, '0.0.0.0'
 
   helpers do
     set :erb, :escape_html => true
 
     def connection
       return $mysql if $mysql
+      env =  ENV['RACK_ENV']
+      config = YAML.load_file(File.dirname(__FILE__) + "/config/database.yml")[env]
       $mysql = Mysql2::Client.new(
-        :host => 'us-cdbr-east-04.cleardb.com',
-        :username => 'b3f847fa686bea',
-        :password => 'd713d92b',
-        :database => 'heroku_26f1a3cb427f369',
+        :host      => config["host"],
+        :username  => config["username"],
+        :password  => config["password"],
+        :database  => config["dbname"],
         :reconnect => true,
       )
     end
 
     def facebook_app
-      config = YAML.load_file(File.dirname(__FILE__) + "/config/sns.yml")["production"]["facebook"]
+      env =  ENV['RACK_ENV']
+      config = YAML.load_file(File.dirname(__FILE__) + "/config/sns.yml")[env]["facebook"]
 
       return {
         app_id: config["app_id"],
