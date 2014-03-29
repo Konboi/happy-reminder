@@ -7,7 +7,7 @@ require 'yaml'
 YAML::ENGINE.yamler = 'syck'
 
 class HappyReminder < Sinatra::Base
-  set :port, 8888
+  set :port, 8765
   set :environments, %w{development production}
   set :session, true
   set :logging, true
