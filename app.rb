@@ -41,7 +41,7 @@ class HappyReminder < Sinatra::Base
     end
 
     def facebook_user(oauth_access_token)
-      graph = Koala::Facebook::API.new(oauth_access_token)
+      Koala::Facebook::API.new(oauth_access_token)
     end
   end
 
@@ -54,24 +54,22 @@ class HappyReminder < Sinatra::Base
     app = facebook_app
     oauth = Koala::Facebook::OAuth.new(app[:app_id], app[:app_secret], app[:callback])
 
-    redirect oauth.url_for_oauth_code(:permissions => ["user_birthday", "publish_stream"])
+    redirect oauth.url_for_oauth_code(:permissions => ["user_birthday", "publish_stream" ])
   end
 
   get '/facebook/callback' do
-    app = facebook_app
+    app   = facebook_app
     mysql = connection
     oauth = Koala::Facebook::OAuth.new(app[:app_id], app[:app_secret], app[:callback])
 
     if params[:code]
       begin
-        token = oauth.get_access_token(params[:code])
-        graph = Koala::Facebook::API.new(token).get_object("/me")
+        token         = oauth.get_access_token(params[:code])
+        graph         = Koala::Facebook::API.new(token).get_object("/me")
         user_birthday = graph["birthday"].split("/")
-        birthday = Time.local(user_birthday[2], user_birthday[0], user_birthday[1])
+        birthday      = Time.local(user_birthday[2], user_birthday[0], user_birthday[1])
 
         user = mysql.xquery("SELECT * FROM users WHERE facebook_id=?", graph["id"]).first
-        graph.put_connections("me", "feed", :message => "heroku")
-
         redirect '/complete' and return if user
 
         mysql.xquery(
@@ -82,13 +80,14 @@ class HappyReminder < Sinatra::Base
           Time.now,
         )
 
-
         redirect 'complete'
       rescue => e
         puts e
       end
+
       redirect '/'
     else
+      redirect '/error'
     end
   end
 
