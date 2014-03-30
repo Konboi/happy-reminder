@@ -1,0 +1,11 @@
+development:
+  facebook:
+    app_id: ""
+    app_secret: ""
+    callback: ""
+
+production:
+  facebook:
+    app_id: ""
+    app_secret: ""
+    callback: ""
