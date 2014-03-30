@@ -76,9 +76,11 @@ class HappyReminder < Sinatra::Base
         redirect '/complete' and return if user
 
         mysql.xquery(
-          'INSERT INTO users (facebook_id, birth_day, access_token, created_at) VALUES (?, ?, ?, ?)',
+          'INSERT INTO users (facebook_id, birth_day,  birth_day_month, birth_day_day, access_token, created_at) VALUES (?, ?, ?, ?, ?, ?)',
           graph["id"],
           birthday,
+          user_birthday[0].to_i,
+          user_birthday[1].to_i,
           token,
           Time.now,
         )
