@@ -19,7 +19,6 @@ class HappyReminder < Sinatra::Base
     def connection
       return $mysql if $mysql
       env =  ENV['RACK_ENV']
-      puts env
       puts  File.dirname(__FILE__)
 
       config = YAML.load_file(File.dirname(__FILE__) + "/config/database.yml")[env]
