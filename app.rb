@@ -57,7 +57,7 @@ class HappyReminder < Sinatra::Base
     app = facebook_app
     oauth = Koala::Facebook::OAuth.new(app[:app_id], app[:app_secret], app[:callback])
 
-    redirect oauth.url_for_oauth_code(:permissions => ["user_birthday", "publish_stream" ])
+    redirect oauth.url_for_oauth_code(:permissions => ["user_birthday", "publish_stream"])
   end
 
   get '/facebook/callback' do
