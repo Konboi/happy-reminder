@@ -12,6 +12,7 @@ class HappyReminder < Sinatra::Base
   set :session, true
   set :logging, true
   set :bind, '0.0.0.0'
+  set :public_folder, './root/'
 
   helpers do
     set :erb, :escape_html => true
